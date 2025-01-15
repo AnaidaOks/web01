@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class Server {
-    final List<String> validPaths = List.of("/index.html", "/spring.svg", "/spring.png", "/resources.html", "/styles.css", "/app.js", "/links.html", "/forms.html", "/classic.html", "/events.html", "/events.js");
+    public final List<String> validPaths = List.of("/index.html", "/spring.svg", "/spring.png", "/resources.html", "/styles.css", "/app.js", "/links.html", "/forms.html", "/classic.html", "/events.html", "/events.js");
     ServerSocket serverSocket;
 
     public Server() throws IOException {
@@ -32,7 +32,7 @@ public class Server {
             try (
                     final var socket = serverSocket.accept();
                     final var in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                    final var out = new BufferedOutputStream(socket.getOutputStream());
+                    final var out = new BufferedOutputStream(socket.getOutputStream())
             ) {
                 // read only request line for simplicity
                 // must be in form GET /path HTTP/1.1
@@ -77,7 +77,7 @@ public class Server {
                 out.flush();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.out);
         }
     }
 }
